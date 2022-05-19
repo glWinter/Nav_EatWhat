@@ -7,4 +7,16 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+    <color name="crop__button_bar">#f3f3f3</color>
+    <color name="crop__button_text">#666666</color>
+    <color name="crop__selector_pressed">#1a000000</color>
+    <color name="crop__selector_focused">#77000000</color>
+    <color name="color_transparent">#00000000</color>
+    <color name="color_blue">#1c86ee</color>
+
+
+    <color name="text_login_color">#9FA9B7</color>
+    <color name="login_button_bg_color">#0F172A</color>
 </resources>

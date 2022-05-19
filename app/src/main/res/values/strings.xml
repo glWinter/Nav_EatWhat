@@ -3,4 +3,15 @@
     <string name="title_select">选择</string>
     <string name="title_edit">编辑</string>
     <string name="title_mine">我的</string>
+
+
+    <string name="crop__saving">Saving picture…</string>
+    <string name="crop__wait">Please wait…</string>
+    <string name="crop__pick_error">No image sources available</string>
+
+    <string name="crop__done">完成</string>
+    <string name="crop__cancel">取消</string>
+
+    <string name="login_input_email_hint">请输入您的账号</string>
+    <string name="login_input_password">请输入您的密码</string>
 </resources>
