@@ -1,14 +1,14 @@
 package com.winter.nav_eatwhat;
 
-import android.app.Application;
 
-import com.tencent.mmkv.MMKV;
 
-public class AppApplication extends Application {
+import com.winter.lib_common.BaseApplication;
+import com.winter.lib_common.utils.Utils;
+
+public class AppApplication extends BaseApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        MMKV.initialize(this);
+        Utils.init(this);
     }
-
 }

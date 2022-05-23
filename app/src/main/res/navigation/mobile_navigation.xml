@@ -8,18 +8,18 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.winter.nav_eatwhat.ui.edit.EditFragment"
-        android:label="@string/title_home"
+        android:label="@string/title_edit"
         tools:layout="@layout/fragment_edit" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.winter.nav_eatwhat.ui.select.SelectFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/title_select"
         tools:layout="@layout/fragment_select" />
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.winter.nav_eatwhat.ui.mine.MineFragment"
-        android:label="@string/title_notifications"
+        android:label="@string/title_mine"
         tools:layout="@layout/fragment_mine" />
 </navigation>

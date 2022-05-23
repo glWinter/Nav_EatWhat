@@ -7,32 +7,37 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
+
+import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.winter.nav_eatwhat.databinding.FragmentEditBinding;
+import com.kunminx.architecture.ui.page.DataBindingConfig;
+import com.winter.lib_common.ui.page.BaseFragment;
+import com.winter.nav_eatwhat.BR;
+import com.winter.nav_eatwhat.R;
+import com.winter.nav_eatwhat.ui.adapter.DrawerAdapter;
+import com.winter.nav_eatwhat.ui.drawer.DrawerFragment;
+import com.winter.nav_eatwhat.ui.state.DrawerViewModel;
 
 
-public class EditFragment extends Fragment {
+public class EditFragment extends BaseFragment {
 
-    private FragmentEditBinding binding;
-
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        EditViewModel homeViewModel =
-                new ViewModelProvider(this).get(EditViewModel.class);
-
-        binding = FragmentEditBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-        return root;
+    EditViewModel mState;
+    @Override
+    protected void initViewModel() {
+        mState = getFragmentScopeViewModel(EditViewModel.class);
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
+    protected DataBindingConfig getDataBindingConfig() {
+        return new DataBindingConfig(R.layout.fragment_edit, BR.vm, mState);
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+    }
+
 }

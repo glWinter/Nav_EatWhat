@@ -7,32 +7,35 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.winter.nav_eatwhat.databinding.FragmentSelectBinding;
+import com.kunminx.architecture.ui.page.DataBindingConfig;
+import com.winter.lib_common.ui.page.BaseFragment;
+import com.winter.nav_eatwhat.BR;
+import com.winter.nav_eatwhat.R;
+
+import com.winter.nav_eatwhat.ui.mine.MineViewModel;
 
 
-public class SelectFragment extends Fragment {
+public class SelectFragment extends BaseFragment {
 
-    private FragmentSelectBinding binding;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        SelectViewModel dashboardViewModel =
-                new ViewModelProvider(this).get(SelectViewModel.class);
-
-        binding = FragmentSelectBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-
-        final TextView textView = binding.textDashboard;
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-        return root;
+    SelectViewModel mState;
+    @Override
+    protected void initViewModel() {
+        mState = getFragmentScopeViewModel(SelectViewModel.class);
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
+    protected DataBindingConfig getDataBindingConfig() {
+        return new DataBindingConfig(R.layout.fragment_select, BR.vm, mState);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
     }
 }
