@@ -1,19 +1,21 @@
 package com.winter.nav_eatwhat.ui.edit;
 
+import androidx.databinding.ObservableField;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.winter.nav_eatwhat.data.bean.Food;
+import com.winter.nav_eatwhat.data.bean.LibraryInfo;
+import com.winter.nav_eatwhat.domain.request.FoodListRequest;
+import com.winter.nav_eatwhat.domain.request.InfoRequest;
+
+import java.util.List;
+
 public class EditViewModel extends ViewModel {
-
-    public final MutableLiveData<String> mText;
-
+    public final ObservableField<Integer> progress = new ObservableField<>();
+    public final MutableLiveData<List<Food>> list = new MutableLiveData<>();
     public EditViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
     }
-
-    public LiveData<String> getText() {
-        return mText;
-    }
+    public final FoodListRequest foodListRequest = new FoodListRequest();
 }

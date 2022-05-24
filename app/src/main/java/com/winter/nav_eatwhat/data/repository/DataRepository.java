@@ -28,10 +28,13 @@ import com.winter.lib_common.utils.Utils;
 import com.winter.nav_eatwhat.R;
 import com.winter.nav_eatwhat.data.api.APIs;
 import com.winter.nav_eatwhat.data.api.AccountService;
+import com.winter.nav_eatwhat.data.bean.BaseResponse;
 import com.winter.nav_eatwhat.data.bean.DownloadFile;
+import com.winter.nav_eatwhat.data.bean.Food;
 import com.winter.nav_eatwhat.data.bean.LibraryInfo;
 import com.winter.nav_eatwhat.data.bean.TestAlbum;
 import com.winter.nav_eatwhat.data.bean.User;
+import com.winter.nav_eatwhat.domain.callback.OkHttpCallBack;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -54,13 +57,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class DataRepository {
 
-    private static final DataRepository S_REQUEST_MANAGER = new DataRepository();
 
+
+    private static class HOLDER{
+        private static final DataRepository S_REQUEST_MANAGER = new DataRepository();
+    }
     private DataRepository() {
     }
 
     public static DataRepository getInstance() {
-        return S_REQUEST_MANAGER;
+        return HOLDER.S_REQUEST_MANAGER;
     }
 
     private final Retrofit retrofit;
@@ -81,6 +87,21 @@ public class DataRepository {
             .build();
     }
 
+    private <T> T getApiService(Class<T> clazz){
+        return retrofit.create(clazz);
+    }
+
+    public void getFoodList(DataResult.Result<List<Food>> result){
+        Call<BaseResponse<List<Food>>> callFoodList = getApiService(AccountService.class).getFoodList();
+        callFoodList.enqueue(new OkHttpCallBack<BaseResponse<List<Food>>>() {
+            @Override
+            public void success(BaseResponse<List<Food>> body) {
+                if(body.data!=null&&body.errorCode == 200)
+                result.onResult(new DataResult<>(body.data, new ResponseStatus()));
+            }
+        });
+    }
+
     /**
      * TODO: 建议在 DataRepository 使用 DataResult 而非 LiveData 来返回结果：
      * liveData 是专用于页面开发的、用于解决生命周期安全问题的组件，
@@ -93,7 +114,6 @@ public class DataRepository {
      * @param result result
      */
     public void getFreeMusic(DataResult.Result<TestAlbum> result) {
-
         Gson gson = new Gson();
         Type type = new TypeToken<TestAlbum>() {
         }.getType();

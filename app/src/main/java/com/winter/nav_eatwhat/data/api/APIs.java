@@ -5,5 +5,5 @@ package com.winter.nav_eatwhat.data.api;
  */
 public class APIs {
 
-    public final static String BASE_URL = "https://test.com/";
+    public final static String BASE_URL = "http://101.43.93.100:8080/eatWhat/";
 }

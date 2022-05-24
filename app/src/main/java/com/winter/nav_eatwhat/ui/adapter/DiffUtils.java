@@ -20,6 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 
 
+import com.winter.nav_eatwhat.data.bean.Food;
 import com.winter.nav_eatwhat.data.bean.LibraryInfo;
 import com.winter.nav_eatwhat.data.bean.TestAlbum;
 
@@ -32,6 +33,8 @@ public class DiffUtils {
 
     private DiffUtil.ItemCallback<TestAlbum.TestMusic> mTestMusicItemCallback;
 
+    private DiffUtil.ItemCallback<Food> mFoodItemCallback;
+
     private DiffUtils() {
     }
 
@@ -39,6 +42,23 @@ public class DiffUtils {
 
     public static DiffUtils getInstance() {
         return S_DIFF_UTILS;
+    }
+
+    public DiffUtil.ItemCallback<Food> getFoodItemCallback(){
+        if(mFoodItemCallback == null){
+            mFoodItemCallback = new DiffUtil.ItemCallback<Food>() {
+                @Override
+                public boolean areItemsTheSame(@NonNull Food oldItem, @NonNull Food newItem) {
+                    return oldItem.equals(newItem);
+                }
+
+                @Override
+                public boolean areContentsTheSame(@NonNull Food oldItem, @NonNull Food newItem) {
+                    return oldItem.getFoodName().equals(newItem.getFoodName());
+                }
+            };
+        }
+        return mFoodItemCallback;
     }
 
     public DiffUtil.ItemCallback<LibraryInfo> getLibraryInfoItemCallback() {
