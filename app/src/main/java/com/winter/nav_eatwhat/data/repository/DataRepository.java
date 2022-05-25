@@ -87,12 +87,12 @@ public class DataRepository {
             .build();
     }
 
-    private <T> T getApiService(Class<T> clazz){
-        return retrofit.create(clazz);
+    private AccountService getApiService(){
+        return retrofit.create(AccountService.class);
     }
 
     public void getFoodList(DataResult.Result<List<Food>> result){
-        Call<BaseResponse<List<Food>>> callFoodList = getApiService(AccountService.class).getFoodList();
+        Call<BaseResponse<List<Food>>> callFoodList = getApiService().getFoodList();
         callFoodList.enqueue(new OkHttpCallBack<BaseResponse<List<Food>>>() {
             @Override
             public void success(BaseResponse<List<Food>> body) {

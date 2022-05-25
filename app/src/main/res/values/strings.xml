@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Nav_EatWhat</string>
+    <string name="app_name">EatWhat</string>
     <string name="title_select">选择</string>
     <string name="title_edit">编辑</string>
     <string name="title_mine">我的</string>

@@ -41,7 +41,7 @@ import java.util.Set;
  * </pre>
  */
 public final class Utils {
-
+    public static final String TAG = "eat_what";
     private static final String PERMISSION_ACTIVITY_CLASS_NAME =
         "com.blankj.utilcode.util.PermissionUtils$PermissionActivity";
 
@@ -359,5 +359,10 @@ public final class Utils {
             Utils.init(getContext());
             return true;
         }
+    }
+
+    public static int dp2px(Context context, float dipValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dipValue * scale + 0.5f);
     }
 }

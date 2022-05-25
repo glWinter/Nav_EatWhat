@@ -18,14 +18,11 @@ import com.winter.nav_eatwhat.databinding.FoodItemBinding;
 public class FoodAdapter extends SimpleDataBindingAdapter<Food, FoodItemBinding> {
     public FoodAdapter(Context context) {
         super(context, R.layout.food_item, DiffUtils.getInstance().getFoodItemCallback());
-        setOnItemClickListener((viewId, item, position) -> {
-//            Uri uri = Uri.parse(item.getUrl());
-//            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-//            mContext.startActivity(intent);
-            Log.d("test",item.toString());
-        });
     }
 
+    public void setClickItem(OnItemClickListener<Food> listener){
+        setOnItemClickListener(listener);
+    }
     @Override
     protected void onBindItem(FoodItemBinding binding, Food item, RecyclerView.ViewHolder holder) {
         binding.setFood(item);

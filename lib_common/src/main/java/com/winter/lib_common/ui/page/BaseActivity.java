@@ -22,6 +22,7 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.NonNull;
@@ -30,6 +31,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 
+import com.gyf.immersionbar.ImmersionBar;
 import com.kunminx.architecture.ui.page.DataBindingActivity;
 import com.winter.lib_common.BaseApplication;
 import com.winter.lib_common.R;
@@ -37,6 +39,7 @@ import com.winter.lib_common.response.manager.NetworkStateManager;
 import com.winter.lib_common.utils.AdaptScreenUtils;
 import com.winter.lib_common.utils.BarUtils;
 import com.winter.lib_common.utils.ScreenUtils;
+import com.winter.lib_common.utils.Utils;
 
 
 /**
@@ -49,22 +52,19 @@ public abstract class BaseActivity extends DataBindingActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-
-        BarUtils.setStatusBarColor(this, Color.TRANSPARENT);
-        BarUtils.setStatusBarLightMode(this, true);
-
         super.onCreate(savedInstanceState);
-
+        Log.d(Utils.TAG,getClass().getName());
+        setStatus();
         getLifecycle().addObserver(NetworkStateManager.getInstance());
-
-        //TODO tip 1: DataBinding 严格模式（详见 DataBindingActivity - - - - - ）：
-        // 将 DataBinding 实例限制于 base 页面中，默认不向子类暴露，
-        // 通过这样的方式，来彻底解决 视图实例 null 安全的一致性问题，
-        // 如此，视图实例 null 安全的安全性将和基于函数式编程思想的 Jetpack Compose 持平。
-
-        // 如果这样说还不理解的话，详见 https://xiaozhuanlan.com/topic/9816742350 和 https://xiaozhuanlan.com/topic/2356748910
     }
-
+    public void setStatus(){
+        ImmersionBar.with(this)
+                .statusBarColor(R.color.white)
+                .statusBarDarkFont(true)
+                .fitsSystemWindows(true)
+                .navigationBarDarkIcon(true)
+                .init();
+    }
     //TODO tip 2: Jetpack 通过 "工厂模式" 来实现 ViewModel 的作用域可控，
     //目前我们在项目中提供了 Application、Activity、Fragment 三个级别的作用域，
     //值得注意的是，通过不同作用域的 Provider 获得的 ViewModel 实例不是同一个，
