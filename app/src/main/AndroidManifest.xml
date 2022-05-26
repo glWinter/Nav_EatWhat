@@ -13,7 +13,7 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.Nav_EatWhat">
 
-        <activity android:name=".ui.page.LoginActivity"
+        <activity android:name=".ui.page.SplashActivity"
             android:exported="true"
             android:windowSoftInputMode="stateVisible|adjustResize"
             >
@@ -22,6 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity android:name=".ui.page.LoginActivity"/>
         <activity android:name=".ui.MainActivity"/>
         <activity android:name=".ui.page.AddFoodActivity"/>
     </application>

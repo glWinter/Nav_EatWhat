@@ -1,10 +1,13 @@
 package com.winter.nav_eatwhat.ui.page;
 
+import android.content.Context;
+import android.content.Intent;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 
 import com.kunminx.architecture.ui.page.DataBindingConfig;
+import com.tencent.mmkv.MMKV;
 import com.winter.lib_common.ui.page.BaseActivity;
 import com.winter.lib_common.utils.ToastUtils;
 import com.winter.nav_eatwhat.BR;
@@ -33,7 +36,7 @@ public class LoginActivity extends BaseActivity {
 
     public class ClickProxy {
         public void login() {
-            ToastUtils.show(viewModel.phoneNum.getValue());
+            MMKV.defaultMMKV().encode("account",viewModel.phoneNum.getValue());
             MainActivity.start(LoginActivity.this);
         }
     }
@@ -64,5 +67,9 @@ public class LoginActivity extends BaseActivity {
     protected void onStop() {
         super.onStop();
         finish();
+    }
+
+    public static void start(Context context){
+        context.startActivity(new Intent(context,LoginActivity.class));
     }
 }
