@@ -1,6 +1,12 @@
 package com.winter.nav_eatwhat.data.bean;
 
 
+import android.text.TextUtils;
+
+import androidx.annotation.DrawableRes;
+
+import com.winter.nav_eatwhat.R;
+
 public class Food {
 
 
@@ -19,6 +25,36 @@ public class Food {
     private String foodAddTime;
 
     private String foodImgUrl;
+
+    private String foodUseTime;
+
+    private String foodDesc;
+
+    private String isThumbsUp;
+
+    public String getIsThumbsUp() {
+        return isThumbsUp;
+    }
+
+    public void setIsThumbsUp(String isThumbsUp) {
+        this.isThumbsUp = isThumbsUp;
+    }
+
+    public String getFoodUseTime() {
+        return foodUseTime;
+    }
+
+    public void setFoodUseTime(String foodUseTime) {
+        this.foodUseTime = foodUseTime;
+    }
+
+    public String getFoodDesc() {
+        return foodDesc;
+    }
+
+    public void setFoodDesc(String foodDesc) {
+        this.foodDesc = foodDesc;
+    }
 
     public String getFoodName() {
         return foodName;
@@ -84,6 +120,7 @@ public class Food {
         this.foodImgUrl = foodImgUrl;
     }
 
+
     @Override
     public String toString() {
         return "Food{" +
@@ -95,6 +132,8 @@ public class Food {
                 ", foodIsVegetable='" + foodIsVegetable + '\'' +
                 ", foodAddTime='" + foodAddTime + '\'' +
                 ", foodImgUrl='" + foodImgUrl + '\'' +
+                ", foodUseTime='" + foodUseTime + '\'' +
+                ", foodDesc='" + foodDesc + '\'' +
                 '}';
     }
 }

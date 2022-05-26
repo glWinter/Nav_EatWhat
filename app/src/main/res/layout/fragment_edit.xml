@@ -53,8 +53,8 @@
             submitList="@{vm.list}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:layoutManager="com.kunminx.binding_recyclerview.layout_manager.WrapContentLinearLayoutManager"
+            app:spanCount="2"
+            app:layoutManager="com.kunminx.binding_recyclerview.layout_manager.WrapContentGridLayoutManager"
         />
     </LinearLayout>
 </layout>

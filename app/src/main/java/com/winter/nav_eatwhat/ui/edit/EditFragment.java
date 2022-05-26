@@ -3,25 +3,18 @@ package com.winter.nav_eatwhat.ui.edit;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 
 import androidx.annotation.Nullable;
 
 import com.kunminx.architecture.ui.page.DataBindingConfig;
-import com.kunminx.binding_recyclerview.adapter.BaseDataBindingAdapter;
 import com.winter.lib_common.ui.page.BaseFragment;
 import com.winter.lib_common.utils.ToastUtils;
 import com.winter.nav_eatwhat.BR;
 import com.winter.nav_eatwhat.R;
-import com.winter.nav_eatwhat.data.bean.Food;
 import com.winter.nav_eatwhat.ui.adapter.FoodAdapter;
 import com.winter.nav_eatwhat.ui.page.AddFoodActivity;
 import com.winter.nav_eatwhat.ui.state.MainActivityViewModel;
-
-import java.util.Objects;
 
 
 public class EditFragment extends BaseFragment {
@@ -59,9 +52,6 @@ public class EditFragment extends BaseFragment {
 
     public class ClickProxy{
         public void addFood() {
-            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
-
-            });
             AddFoodActivity.start(requireActivity());
         }
     }
