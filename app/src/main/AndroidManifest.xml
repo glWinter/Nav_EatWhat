@@ -16,6 +16,7 @@
         <activity android:name=".ui.page.SplashActivity"
             android:exported="true"
             android:windowSoftInputMode="stateVisible|adjustResize"
+            android:theme="@style/launcher"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

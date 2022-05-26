@@ -66,5 +66,8 @@
         <item name="android:drawableLeft">@drawable/crop__ic_cancel</item>
         <item name="android:text">@string/crop__cancel</item>
     </style>
-
+    <style name="launcher" parent="Theme.Nav_EatWhat">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@drawable/splash_bg</item>
+    </style>
 </resources>

@@ -31,6 +31,7 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        setTheme(R.style.Theme_Nav_EatWhat);
         super.onCreate(savedInstanceState);
         ThreadUtils.runOnUiThreadDelayed(new Runnable() {
             @Override
