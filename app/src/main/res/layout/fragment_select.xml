@@ -7,15 +7,44 @@
         <variable
             name="vm"
             type="com.winter.nav_eatwhat.ui.select.SelectViewModel" />
+
+
+        <variable
+            name="click"
+            type="com.winter.nav_eatwhat.ui.select.SelectFragment.ClickProxy" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context=".ui.select.SelectFragment">
-
+        <com.hjq.bar.TitleBar
+            android:id="@+id/titleBar"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            app:leftIcon="@null"
+            app:title="选择">
+            <LinearLayout
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end|center_vertical"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/addNewFood"
+                    android:layout_width="0dp"
+                    onClickWithDebouncing="@{()->click.history()}"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/food_item_selector"
+                    android:gravity="center"
+                    android:text="历史" />
+            </LinearLayout>
+        </com.hjq.bar.TitleBar>
         <TextView
             android:id="@+id/text_dashboard"
+            android:layout_below="@id/titleBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -24,9 +53,21 @@
             android:textAlignment="center"
             android:textSize="20sp"
             android:text="@{vm.mText}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+             />
+
+        <Button
+            android:id="@+id/select"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/select_button_click_selector"
+            android:elevation="2dp"
+            android:layout_marginBottom="48dp"
+            android:text="确  认"
+            onClickWithDebouncing="@{()->click.select()}"
+            android:textColor="#EF5F0E"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
 </layout>

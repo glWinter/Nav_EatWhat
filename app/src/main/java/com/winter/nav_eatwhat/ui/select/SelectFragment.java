@@ -13,10 +13,13 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.kunminx.architecture.ui.page.DataBindingConfig;
 import com.winter.lib_common.ui.page.BaseFragment;
+import com.winter.lib_common.utils.ToastUtils;
 import com.winter.nav_eatwhat.BR;
 import com.winter.nav_eatwhat.R;
 
+import com.winter.nav_eatwhat.ui.edit.EditFragment;
 import com.winter.nav_eatwhat.ui.mine.MineViewModel;
+import com.winter.nav_eatwhat.ui.page.AddFoodActivity;
 
 
 public class SelectFragment extends BaseFragment {
@@ -30,12 +33,22 @@ public class SelectFragment extends BaseFragment {
 
     @Override
     protected DataBindingConfig getDataBindingConfig() {
-        return new DataBindingConfig(R.layout.fragment_select, BR.vm, mState);
+        return new DataBindingConfig(R.layout.fragment_select, BR.vm, mState)
+                .addBindingParam(BR.click, new ClickProxy());
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+    }
+
+    public class ClickProxy{
+        public void history() {
+            AddFoodActivity.start(requireActivity());
+        }
+        public void select(){
+            ToastUtils.show("select");
+        }
     }
 }

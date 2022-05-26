@@ -61,6 +61,7 @@ dependencies {
     implementation 'com.github.getActivity:TitleBar:9.3'
 
     implementation 'com.liuzhuang.opensource:rcimageview:0.0.2'
-
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.9.1'
+    debugImplementation 'com.guolindev.glance:glance:1.1.0'
 
 }

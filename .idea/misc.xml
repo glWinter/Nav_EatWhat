@@ -12,8 +12,10 @@
         <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/drawable/login_bg_gradient.xml" value="0.1645" />
         <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/drawable/login_edit_text_border.xml" value="0.1645" />
         <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/drawable/login_view_layout.xml" value="0.1645" />
+        <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/drawable/select_button_click_selector.xml" value="0.158" />
         <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/drawable/shape_bg.xml" value="0.1645" />
         <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/drawable/shape_radian_dialog_white.xml" value="0.1645" />
+        <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/drawable/shape_select_button_press.xml" value="0.158" />
         <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/drawable/splash.xml" value="0.158" />
         <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/layout/activity_add_food.xml" value="0.2441214194100043" />
         <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/layout/activity_main.xml" value="0.28020833333333334" />
