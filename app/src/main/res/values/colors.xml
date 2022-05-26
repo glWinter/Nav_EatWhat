@@ -22,4 +22,9 @@
 
     <color name="splash_text_color">#53E88B</color>
     <color name="splash_small_text_color">#09051C</color>
+
+    <color name="mine_divider_color">#ECECEC</color>
+    <color name="login_edit_strike_color">#1A3751</color>
+    <color name="login_button_bg_color_enable">#FFCCBC</color>
+    <color name="login_button_bg_color_able">#EF5F0E</color>
 </resources>

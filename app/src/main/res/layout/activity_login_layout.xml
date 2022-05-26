@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.winter.nav_eatwhat.ui.state.LoginViewModel" />
+
+        <variable
+            name="click"
+            type="com.winter.nav_eatwhat.ui.page.LoginActivity.ClickProxy" />
+
+        <variable
+            name="watcher"
+            type="com.winter.nav_eatwhat.ui.page.LoginActivity.PhoneTextWatcher" />
+    </data>
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            watcher="@{watcher}"
+            android:id="@+id/phone_num"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:textCursorDrawable="@drawable/shape_edittext_cursor"
+            android:inputType="phone"
+            android:maxLines="1"
+            android:paddingBottom="10dp"
+            android:hint="输入手机号！"
+            android:background="@drawable/login_phone_shape" />
+
+        <Button
+            enabled="@{vm.buttonEnable}"
+            onClickWithDebouncing="@{()->click.login()}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/phone_num"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/login_button_selector"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="登   录"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </RelativeLayout>
+</layout>

@@ -52,6 +52,10 @@ public class CommonBindingAdapter {
         view.setSelected(select);
     }
 
+    @BindingAdapter(value = {"enabled"}, requireAll = false)
+    public static void enabled(View view, boolean enabled) {
+        view.setEnabled(enabled);
+    }
 
     @BindingAdapter(value = {"onClickWithDebouncing"}, requireAll = false)
     public static void onClickWithDebouncing(View view, View.OnClickListener clickListener) {

@@ -10,14 +10,21 @@
         <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.1645" />
         <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.1645" />
         <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/drawable/login_bg_gradient.xml" value="0.1645" />
+        <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/drawable/login_button_selector.xml" value="0.158" />
+        <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/drawable/login_button_shape.xml" value="0.158" />
+        <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/drawable/login_button_shape_able.xml" value="0.158" />
         <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/drawable/login_edit_text_border.xml" value="0.1645" />
+        <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/drawable/login_phone_shape.xml" value="0.158" />
         <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/drawable/login_view_layout.xml" value="0.1645" />
         <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/drawable/select_button_click_selector.xml" value="0.158" />
         <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/drawable/shape_bg.xml" value="0.1645" />
+        <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/drawable/shape_edittext_cursor.xml" value="0.158" />
         <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/drawable/shape_radian_dialog_white.xml" value="0.1645" />
+        <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/drawable/shape_select_button_normal.xml" value="0.158" />
         <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/drawable/shape_select_button_press.xml" value="0.158" />
         <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/drawable/splash.xml" value="0.158" />
         <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/layout/activity_add_food.xml" value="0.2441214194100043" />
+        <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/layout/activity_login_layout.xml" value="0.1" />
         <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/layout/activity_main.xml" value="0.28020833333333334" />
         <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/layout/adapter_library.xml" value="0.2441214194100043" />
         <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/layout/alert_dialog.xml" value="0.296195652173913" />

@@ -1,5 +1,7 @@
 package com.winter.nav_eatwhat.ui;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -47,5 +49,9 @@ public class MainActivity extends BaseActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.nav_view);
         NavController navController = Navigation.findNavController(this, R.id.main_fragment_host);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
+    }
+
+    public static void start(Context context){
+        context.startActivity(new Intent(context,MainActivity.class));
     }
 }
