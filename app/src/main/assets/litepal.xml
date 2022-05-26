@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<litepal>
+
+    <dbname value="food" />
+
+
+    <version value="1" />
+
+    <list>
+        <mapping class="com.winter.nav_eatwhat.data.bean.Food" />
+    </list>
+
+</litepal>

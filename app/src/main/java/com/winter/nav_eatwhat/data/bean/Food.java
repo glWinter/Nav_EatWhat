@@ -7,7 +7,9 @@ import androidx.annotation.DrawableRes;
 
 import com.winter.nav_eatwhat.R;
 
-public class Food {
+import org.litepal.crud.LitePalSupport;
+
+public class Food extends LitePalSupport {
 
 
     private String foodName;
@@ -18,7 +20,7 @@ public class Food {
 
     private String foodOption;
 
-    private Integer foodId;
+    private int foodId;
 
     private String foodIsVegetable;
 
@@ -119,6 +121,8 @@ public class Food {
     public void setFoodImgUrl(String foodImgUrl) {
         this.foodImgUrl = foodImgUrl;
     }
+
+
 
 
     @Override

@@ -18,6 +18,8 @@ package com.winter.nav_eatwhat.ui.base.adapter;
 
 import android.graphics.drawable.Drawable;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,6 +27,7 @@ import androidx.databinding.BindingAdapter;
 
 import com.bumptech.glide.Glide;
 import com.winter.lib_common.utils.ClickUtils;
+import com.winter.nav_eatwhat.ui.edit.EditFragment;
 
 
 /**
@@ -55,6 +58,12 @@ public class CommonBindingAdapter {
     @BindingAdapter(value = {"enabled"}, requireAll = false)
     public static void enabled(View view, boolean enabled) {
         view.setEnabled(enabled);
+    }
+
+
+    @BindingAdapter(value = {"listener"}, requireAll = false)
+    public static void checkListener(CheckBox view, EditFragment.CheckBoxListener listener) {
+        view.setOnCheckedChangeListener(listener);
     }
 
     @BindingAdapter(value = {"onClickWithDebouncing"}, requireAll = false)
