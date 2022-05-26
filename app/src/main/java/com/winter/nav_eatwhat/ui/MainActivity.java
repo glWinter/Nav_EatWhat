@@ -22,6 +22,7 @@ import com.winter.nav_eatwhat.R;
 import com.winter.nav_eatwhat.domain.message.DrawerCoordinateManager;
 import com.winter.nav_eatwhat.domain.message.SharedViewModel;
 
+import com.winter.nav_eatwhat.ui.page.AddFoodActivity;
 import com.winter.nav_eatwhat.ui.state.MainActivityViewModel;
 
 public class MainActivity extends BaseActivity {
@@ -37,7 +38,8 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected DataBindingConfig getDataBindingConfig() {
-        return new DataBindingConfig(R.layout.activity_main, BR.vm, mState);
+        return new DataBindingConfig(R.layout.activity_main, BR.vm, mState)
+                .addBindingParam(BR.click,new ClickProxy());
     }
 
     @Override
@@ -53,5 +55,11 @@ public class MainActivity extends BaseActivity {
 
     public static void start(Context context){
         context.startActivity(new Intent(context,MainActivity.class));
+    }
+
+    public class ClickProxy{
+        public void addFood() {
+            AddFoodActivity.start(MainActivity.this);
+        }
     }
 }

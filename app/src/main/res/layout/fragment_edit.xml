@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="vm"
             type="com.winter.nav_eatwhat.ui.edit.EditViewModel" />
@@ -12,15 +13,12 @@
             name="adapter"
             type="androidx.recyclerview.widget.RecyclerView.Adapter" />
 
-        <variable
-            name="click"
-            type="com.winter.nav_eatwhat.ui.edit.EditFragment.ClickProxy" />
     </data>
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context=".ui.edit.EditFragment">
 
         <com.hjq.bar.TitleBar
@@ -28,24 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             app:leftIcon="@null"
-            app:title="菜单">
-            <LinearLayout
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="end|center_vertical"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/addNewFood"
-                    android:layout_width="0dp"
-                    onClickWithDebouncing="@{()->click.addFood()}"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/food_item_selector"
-                    android:gravity="center"
-                    android:text="添加" />
-            </LinearLayout>
-        </com.hjq.bar.TitleBar>
+            app:title="菜单" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv"
@@ -53,8 +34,7 @@
             submitList="@{vm.list}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:spanCount="2"
             app:layoutManager="com.kunminx.binding_recyclerview.layout_manager.WrapContentGridLayoutManager"
-        />
+            app:spanCount="2" />
     </LinearLayout>
 </layout>

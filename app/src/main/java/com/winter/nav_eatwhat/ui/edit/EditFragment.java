@@ -32,7 +32,6 @@ public class EditFragment extends BaseFragment {
         FoodAdapter foodAdapter = new FoodAdapter(getContext());
         foodAdapter.setClickItem((viewId, item, position) -> ToastUtils.show(item.toString()));
         return new DataBindingConfig(R.layout.fragment_edit, BR.vm, mState)
-                .addBindingParam(BR.click, new ClickProxy())
                 .addBindingParam(BR.adapter, foodAdapter);
     }
 
@@ -47,12 +46,6 @@ public class EditFragment extends BaseFragment {
         });
         if (mState.foodListRequest.getFoodLiveData().getValue() == null) {
             mState.foodListRequest.requestFoodListInfo();
-        }
-    }
-
-    public class ClickProxy{
-        public void addFood() {
-            AddFoodActivity.start(requireActivity());
         }
     }
 }
