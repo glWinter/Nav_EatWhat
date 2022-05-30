@@ -1,10 +1,13 @@
 package com.winter.nav_eatwhat.ui.adapter;
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.kunminx.binding_recyclerview.adapter.SimpleDataBindingAdapter;
 import com.winter.nav_eatwhat.R;
 import com.winter.nav_eatwhat.data.bean.Food;
+import com.winter.nav_eatwhat.data.dao.FoodDao;
 import com.winter.nav_eatwhat.databinding.FoodCardItemBinding;
 import com.winter.nav_eatwhat.ui.edit.EditFragment;
 import com.winter.nav_eatwhat.ui.edit.EditViewModel;
@@ -21,8 +25,9 @@ import java.util.List;
 
 
 public class FoodAdapter extends SimpleDataBindingAdapter<Food, FoodCardItemBinding> {
+    private static final String THUMBS = "1";
+    private static final String NO_THUMBS = "0";
 
-    private View.OnClickListener clickListener;
     public FoodAdapter(Context context) {
         super(context, R.layout.food_card_item, DiffUtils.getInstance().getFoodItemCallback());
     }
@@ -44,12 +49,7 @@ public class FoodAdapter extends SimpleDataBindingAdapter<Food, FoodCardItemBind
     @Override
     protected void onBindItem(FoodCardItemBinding binding, Food item, RecyclerView.ViewHolder holder) {
         binding.setFood(item);
-        binding.menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDialog(item);
-            }
-        });
+        binding.menu.setOnClickListener(v -> showDialog(item));
     }
 
     Dialog mShareDialog;
@@ -68,13 +68,39 @@ public class FoodAdapter extends SimpleDataBindingAdapter<Food, FoodCardItemBind
         window.setGravity(Gravity.BOTTOM);
         window.setWindowAnimations(R.style.share_animation);
         View view = View.inflate(mContext, R.layout.bottom_dialog, null);
-        view.findViewById(R.id.tv_cancel).setOnClickListener(view1 -> {
+        view.findViewById(R.id.tv_cancel).setOnClickListener(v -> {
             if (mShareDialog != null && mShareDialog.isShowing()) {
                 mShareDialog.dismiss();
             }
         });
+        TextView foodName = view.findViewById(R.id.foodName);
+        foodName.setText(item.getFoodName());
+        TextView sc = view.findViewById(R.id.sc);
+        setTextDrawable(sc,item.getIsThumbsUp());
+        sc.setOnClickListener(v -> {
+            if(TextUtils.equals(item.getIsThumbsUp(),THUMBS)){
+                setTextDrawable(sc,NO_THUMBS);
+                item.setIsThumbsUp(NO_THUMBS);
+            }else{
+                setTextDrawable(sc,THUMBS);
+                item.setIsThumbsUp(THUMBS);
+            }
+            FoodDao.getInstance().updateFoodThumb(item);
+        });
         window.setContentView(view);
         window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);//设置横向全屏
+    }
+
+    private void setTextDrawable(TextView sc,String isThumb){
+        if(TextUtils.equals(isThumb,THUMBS)){
+            Drawable drawable =mContext.getResources().getDrawable(R.drawable.sc_fill);
+            drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+            sc.setCompoundDrawables(null,drawable,null,null);
+        }else{
+            Drawable drawable =mContext.getResources().getDrawable(R.drawable.sc);
+            drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+            sc.setCompoundDrawables(null,drawable,null,null);
+        }
     }
 
 }
