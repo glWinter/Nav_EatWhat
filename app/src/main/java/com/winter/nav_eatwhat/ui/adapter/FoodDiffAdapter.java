@@ -16,12 +16,14 @@ import com.bumptech.glide.Glide;
 import com.winter.nav_eatwhat.R;
 import com.winter.nav_eatwhat.data.bean.Food;
 import com.winter.nav_eatwhat.databinding.FoodCardItemBinding;
+import com.winter.nav_eatwhat.ui.edit.EditViewModel;
 
 import java.util.List;
 
 public class FoodDiffAdapter extends RecyclerView.Adapter<FoodDiffAdapter.FoodViewHolder> {
     private Context context;
     private List<Food> foodList;
+    private EditViewModel state;
 
     public List<Food> getData() {
         return foodList;
@@ -45,10 +47,10 @@ public class FoodDiffAdapter extends RecyclerView.Adapter<FoodDiffAdapter.FoodVi
     }
     private static final String THUMBS = "1";
     private static final String NO_THUMBS = "0";
-    public FoodDiffAdapter(Context context,List<Food> foodList) {
-
+    public FoodDiffAdapter(Context context, List<Food> foodList, EditViewModel state) {
         this.context = context;
         this.foodList = foodList;
+        this.state = state;
     }
 
     public void setData(List<Food> list){
@@ -70,9 +72,11 @@ public class FoodDiffAdapter extends RecyclerView.Adapter<FoodDiffAdapter.FoodVi
             if(TextUtils.equals(foodList.get(position).getIsThumbsUp(),THUMBS)){
                 foodList.get(position).setIsThumbsUp(NO_THUMBS);
                 notifyItemChanged(foodList.indexOf(foodList.get(position)),NO_THUMBS);
+                state.foodListRequest.requestFoodThumb(foodList.get(position).getFoodId()+"",NO_THUMBS);
             }else{
                 foodList.get(position).setIsThumbsUp(THUMBS);
                 notifyItemChanged(foodList.indexOf(foodList.get(position)),THUMBS);
+                state.foodListRequest.requestFoodThumb(foodList.get(position).getFoodId()+"",THUMBS);
             }
         });
         if(foodList.get(position).getIsThumbsUp().equals(THUMBS)){

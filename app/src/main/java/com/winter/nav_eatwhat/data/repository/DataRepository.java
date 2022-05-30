@@ -3,6 +3,8 @@ package com.winter.nav_eatwhat.data.repository;
 
 import android.util.Log;
 
+import com.ayvytr.okhttploginterceptor.LoggingInterceptor;
+import com.ayvytr.okhttploginterceptor.Priority;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -56,13 +58,16 @@ public class DataRepository {
     private final Retrofit retrofit;
 
     {
-        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+        LoggingInterceptor interceptor = new LoggingInterceptor();
+        interceptor.setShowAll(true);
+        interceptor.setPriority(Priority.E);
+        interceptor.setTag("eatWhat");
+
         OkHttpClient client = new OkHttpClient.Builder()
             .connectTimeout(8, TimeUnit.SECONDS)
             .readTimeout(8, TimeUnit.SECONDS)
             .writeTimeout(8, TimeUnit.SECONDS)
-            .addInterceptor(logging)
+            .addInterceptor(interceptor)
             .build();
         retrofit = new Retrofit.Builder()
             .baseUrl(APIs.BASE_URL)
@@ -87,6 +92,16 @@ public class DataRepository {
                     result.onResult(new DataResult<>(body.data, new ResponseStatus()));
                 }
 
+            }
+        });
+    }
+
+    public void changeFoodIsThumb(String foodId,String isThumb,DataResult.Result<Food> result){
+        Call<BaseResponse<Food>> changeCall = getApiService().changeThumb(foodId, isThumb);
+        changeCall.enqueue(new OkHttpCallBack<BaseResponse<Food>>() {
+            @Override
+            public void success(BaseResponse<Food> body) {
+                result.onResult(new DataResult<>(body.data, new ResponseStatus()));
             }
         });
     }

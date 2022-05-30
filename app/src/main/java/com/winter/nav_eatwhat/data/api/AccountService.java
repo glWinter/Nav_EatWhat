@@ -10,6 +10,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 /**
  * Create by KunMinX at 2021/6/3
@@ -25,4 +26,7 @@ public interface AccountService {
 
     @GET("foodList")
     Call<BaseResponse<List<Food>>> getFoodList();
+
+    @POST("modifyThumb")
+    Call<BaseResponse<Food>> changeThumb(@Query("foodId")String foodId,@Query("isThumb")String isThumb);
 }

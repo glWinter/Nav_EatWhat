@@ -1,31 +1,36 @@
 package com.winter.nav_eatwhat.ui.edit;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 
 import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.kunminx.architecture.ui.page.DataBindingConfig;
+import com.winter.lib_common.response.DataResult;
 import com.winter.lib_common.ui.page.BaseFragment;
 import com.winter.lib_common.utils.ToastUtils;
 import com.winter.nav_eatwhat.BR;
 import com.winter.nav_eatwhat.R;
+import com.winter.nav_eatwhat.data.bean.Food;
 import com.winter.nav_eatwhat.data.dao.FoodDao;
 import com.winter.nav_eatwhat.ui.adapter.DiffUtils;
 import com.winter.nav_eatwhat.ui.adapter.FoodDiffAdapter;
 import com.winter.nav_eatwhat.ui.state.MainActivityViewModel;
+
+import java.util.ArrayList;
 
 
 public class EditFragment extends BaseFragment {
 
     EditViewModel mState;
     MainActivityViewModel mActivityScopeState;
-
     FoodDiffAdapter foodAdapter;
     @Override
     protected void initViewModel() {
@@ -35,7 +40,7 @@ public class EditFragment extends BaseFragment {
 
     @Override
     protected DataBindingConfig getDataBindingConfig() {
-        foodAdapter = new FoodDiffAdapter(getContext(),mState.list.getValue());
+        foodAdapter = new FoodDiffAdapter(getContext(),new ArrayList<Food>(),mState);
 
         return new DataBindingConfig(R.layout.fragment_edit, BR.vm, mState)
                 .addBindingParam(BR.adapter, foodAdapter)
@@ -54,6 +59,12 @@ public class EditFragment extends BaseFragment {
 
             if (listDataResult.getResult() != null) {
                 foodAdapter.setNewData(listDataResult.getResult());
+            }
+        });
+        mState.foodListRequest.getFoodChangeLiveData().observe(this, foodDataResult -> {
+            if (!foodDataResult.getResponseStatus().isSuccess()) return;
+            if (foodDataResult.getResult() != null) {
+                Log.d("test",foodDataResult.getResult().toString());
             }
         });
         if (mState.foodListRequest.getFoodLiveData().getValue() == null) {
