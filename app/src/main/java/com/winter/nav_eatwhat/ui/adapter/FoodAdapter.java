@@ -79,7 +79,7 @@ public class FoodAdapter extends SimpleDataBindingAdapter<Food, FoodCardItemBind
         foodName.setText(item.getFoodName());
         TextView sc = view.findViewById(R.id.sc);
         setTextDrawable(sc, item.getIsThumbsUp());
-        ClickUtils.setClick(sc, 2, new ClickUtils.onClickListener() {
+        ClickUtils.setClick(sc, 1, new ClickUtils.onClickListener() {
             @Override
             public void onClick() {
                 if (TextUtils.equals(item.getIsThumbsUp(), THUMBS)) {
