@@ -56,11 +56,9 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv"
-            adapter="@{adapter}"
-            submitList="@{vm.list}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layoutManager="com.kunminx.binding_recyclerview.layout_manager.WrapContentGridLayoutManager"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:spanCount="2" />
     </LinearLayout>
 </layout>

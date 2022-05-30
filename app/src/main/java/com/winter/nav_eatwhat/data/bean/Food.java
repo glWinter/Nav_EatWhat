@@ -90,7 +90,7 @@ public class Food extends LitePalSupport {
         this.foodOption = foodOption;
     }
 
-    public Integer getFoodId() {
+    public int getFoodId() {
         return foodId;
     }
 

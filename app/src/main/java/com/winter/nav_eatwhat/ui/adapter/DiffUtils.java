@@ -1,20 +1,6 @@
-/*
- * Copyright 2018-present KunMinX
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.winter.nav_eatwhat.ui.adapter;
+
+import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
@@ -24,16 +10,12 @@ import com.winter.nav_eatwhat.data.bean.Food;
 import com.winter.nav_eatwhat.data.bean.LibraryInfo;
 import com.winter.nav_eatwhat.data.bean.TestAlbum;
 
-/**
- * Create by KunMinX at 2020/7/19
- */
+import java.util.List;
+
 public class DiffUtils {
 
-    private DiffUtil.ItemCallback<LibraryInfo> mLibraryInfoItemCallback;
 
-    private DiffUtil.ItemCallback<TestAlbum.TestMusic> mTestMusicItemCallback;
-
-    private DiffUtil.ItemCallback<Food> mFoodItemCallback;
+    private DiffUtil.Callback mFoodDiffCallback;
 
     private DiffUtils() {
     }
@@ -44,54 +26,36 @@ public class DiffUtils {
         return S_DIFF_UTILS;
     }
 
-    public DiffUtil.ItemCallback<Food> getFoodItemCallback(){
-        if(mFoodItemCallback == null){
-            mFoodItemCallback = new DiffUtil.ItemCallback<Food>() {
+    public DiffUtil.Callback getFoodDiffCallback(List<Food> oldList,List<Food> newList){
+        if(mFoodDiffCallback == null){
+            mFoodDiffCallback = new DiffUtil.Callback() {
                 @Override
-                public boolean areItemsTheSame(@NonNull Food oldItem, @NonNull Food newItem) {
-                    return oldItem.equals(newItem);
+                public int getOldListSize() {
+                    return oldList.size();
                 }
 
                 @Override
-                public boolean areContentsTheSame(@NonNull Food oldItem, @NonNull Food newItem) {
-                    return oldItem.getFoodName().equals(newItem.getFoodName());
+                public int getNewListSize() {
+                    return newList.size();
+                }
+
+                @Override
+                public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
+                    Food oldU = oldList.get(oldItemPosition);
+                    Food newU = newList.get(newItemPosition);
+                    // Name
+                    return oldU.getFoodId() == newU.getFoodId();
+                }
+
+                @Override
+                public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
+                    Food oldU = oldList.get(oldItemPosition);
+                    Food newU = newList.get(newItemPosition);
+                    // Name
+                    return TextUtils.equals(oldU.getFoodName(), newU.getFoodName());
                 }
             };
         }
-        return mFoodItemCallback;
-    }
-
-    public DiffUtil.ItemCallback<LibraryInfo> getLibraryInfoItemCallback() {
-        if (mLibraryInfoItemCallback == null) {
-            mLibraryInfoItemCallback = new DiffUtil.ItemCallback<LibraryInfo>() {
-                @Override
-                public boolean areItemsTheSame(@NonNull LibraryInfo oldItem, @NonNull LibraryInfo newItem) {
-                    return oldItem.equals(newItem);
-                }
-
-                @Override
-                public boolean areContentsTheSame(@NonNull LibraryInfo oldItem, @NonNull LibraryInfo newItem) {
-                    return oldItem.getTitle().equals(newItem.getTitle());
-                }
-            };
-        }
-        return mLibraryInfoItemCallback;
-    }
-
-    public DiffUtil.ItemCallback<TestAlbum.TestMusic> getTestMusicItemCallback() {
-        if (mTestMusicItemCallback == null) {
-            mTestMusicItemCallback = new DiffUtil.ItemCallback<TestAlbum.TestMusic>() {
-                @Override
-                public boolean areItemsTheSame(@NonNull TestAlbum.TestMusic oldItem, @NonNull TestAlbum.TestMusic newItem) {
-                    return oldItem.equals(newItem);
-                }
-
-                @Override
-                public boolean areContentsTheSame(@NonNull TestAlbum.TestMusic oldItem, @NonNull TestAlbum.TestMusic newItem) {
-                    return oldItem.getMusicId().equals(newItem.getMusicId());
-                }
-            };
-        }
-        return mTestMusicItemCallback;
+        return mFoodDiffCallback;
     }
 }
