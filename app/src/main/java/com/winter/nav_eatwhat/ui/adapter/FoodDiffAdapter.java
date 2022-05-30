@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.winter.nav_eatwhat.R;
 import com.winter.nav_eatwhat.data.bean.Food;
+import com.winter.nav_eatwhat.data.dao.FoodDao;
 import com.winter.nav_eatwhat.databinding.FoodCardItemBinding;
 import com.winter.nav_eatwhat.ui.edit.EditViewModel;
 
@@ -78,6 +79,7 @@ public class FoodDiffAdapter extends RecyclerView.Adapter<FoodDiffAdapter.FoodVi
                 notifyItemChanged(foodList.indexOf(foodList.get(position)),THUMBS);
                 state.foodListRequest.requestFoodThumb(foodList.get(position).getFoodId()+"",THUMBS);
             }
+            FoodDao.getInstance().updateFoodThumb(foodList.get(position));
         });
         if(foodList.get(position).getIsThumbsUp().equals(THUMBS)){
             holder.thump.setImageResource(R.drawable.thumb_fill);

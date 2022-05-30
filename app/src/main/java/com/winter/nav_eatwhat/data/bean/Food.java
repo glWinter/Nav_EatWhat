@@ -40,7 +40,6 @@ public class Food extends LitePalSupport {
 
     public void setIsThumbsUp(String isThumbsUp) {
         this.isThumbsUp = isThumbsUp;
-        save();
     }
 
     public String getFoodUseTime() {

@@ -56,7 +56,6 @@ public class EditFragment extends BaseFragment {
         recyclerView.setItemAnimator(null);
         mState.foodListRequest.getFoodLiveData().observe(this, listDataResult -> {
             if (!listDataResult.getResponseStatus().isSuccess()) return;
-
             if (listDataResult.getResult() != null) {
                 foodAdapter.setNewData(listDataResult.getResult());
             }

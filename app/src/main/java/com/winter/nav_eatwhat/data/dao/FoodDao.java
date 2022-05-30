@@ -29,4 +29,12 @@ public class FoodDao {
             return LitePal.findAll(Food.class);
         }
     }
+
+    public void updateFoodThumb(Food food) {
+        List<Food> foods = LitePal.where("foodId = ?", String.valueOf(food.getFoodId())).find(Food.class);
+        Food f = foods.get(0);
+        f.setIsThumbsUp(food.getIsThumbsUp());
+        f.save();
+    }
+
 }
