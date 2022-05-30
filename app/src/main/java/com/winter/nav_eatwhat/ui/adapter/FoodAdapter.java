@@ -13,7 +13,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.jakewharton.rxbinding4.view.RxView;
 import com.kunminx.binding_recyclerview.adapter.SimpleDataBindingAdapter;
 import com.winter.lib_common.utils.ClickUtils;
 import com.winter.nav_eatwhat.R;
@@ -59,17 +58,12 @@ public class FoodAdapter extends SimpleDataBindingAdapter<Food, FoodCardItemBind
         binding.menu.setOnClickListener(v -> showDialog(item));
     }
 
-    Dialog mShareDialog;
-
     private void showDialog(Food item) {
-        if (mShareDialog == null) {
-            initShareDialog(item);
-        }
-        mShareDialog.show();
+        initShareDialog(item).show();
     }
 
-    private void initShareDialog(Food item) {
-        mShareDialog = new Dialog(mContext, R.style.dialog_bottom_full);
+    private Dialog initShareDialog(Food item) {
+        Dialog mShareDialog = new Dialog(mContext, R.style.dialog_bottom_full);
         mShareDialog.setCanceledOnTouchOutside(true);
         mShareDialog.setCancelable(true);
         Window window = mShareDialog.getWindow();
@@ -100,6 +94,7 @@ public class FoodAdapter extends SimpleDataBindingAdapter<Food, FoodCardItemBind
         });
         window.setContentView(view);
         window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);//设置横向全屏
+        return mShareDialog;
     }
 
     private void setTextDrawable(TextView sc, String isThumb) {
