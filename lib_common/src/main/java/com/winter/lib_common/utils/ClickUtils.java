@@ -5,6 +5,13 @@ import android.view.View;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 
+import com.jakewharton.rxbinding4.view.RxView;
+
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.rxjava3.functions.Consumer;
+import kotlin.Unit;
+
 /**
  * <pre>
  *     author: Blankj
@@ -137,5 +144,16 @@ public class ClickUtils {
         }
     }
 
+    public static void setClick(View view,int time,onClickListener listener){
+        RxView.clicks(view).throttleFirst(time, TimeUnit.SECONDS).subscribe(listener);
+    }
+
+    public abstract static class onClickListener implements Consumer<Object>{
+        @Override
+        public void accept(Object o) {
+            onClick();
+        }
+        public abstract void onClick();
+    }
 
 }

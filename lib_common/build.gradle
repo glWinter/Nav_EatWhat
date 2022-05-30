@@ -53,4 +53,6 @@ dependencies {
     api 'com.kunminx.arch:strict-databinding:4.0.0-beta1'
     api 'com.geyifeng.immersionbar:immersionbar:3.2.2'
 
+    api 'com.jakewharton.rxbinding4:rxbinding-core:4.0.0'
+    api 'com.jakewharton.rxbinding4:rxbinding-appcompat:4.0.0'
 }

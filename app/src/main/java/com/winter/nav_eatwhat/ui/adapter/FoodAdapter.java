@@ -1,4 +1,5 @@
 package com.winter.nav_eatwhat.ui.adapter;
+
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -12,7 +13,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.jakewharton.rxbinding4.view.RxView;
 import com.kunminx.binding_recyclerview.adapter.SimpleDataBindingAdapter;
+import com.winter.lib_common.utils.ClickUtils;
 import com.winter.nav_eatwhat.R;
 import com.winter.nav_eatwhat.data.bean.Food;
 import com.winter.nav_eatwhat.data.dao.FoodDao;
@@ -22,6 +25,10 @@ import com.winter.nav_eatwhat.ui.edit.EditViewModel;
 
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.rxjava3.functions.Consumer;
+import kotlin.Unit;
 
 
 public class FoodAdapter extends SimpleDataBindingAdapter<Food, FoodCardItemBinding> {
@@ -53,6 +60,7 @@ public class FoodAdapter extends SimpleDataBindingAdapter<Food, FoodCardItemBind
     }
 
     Dialog mShareDialog;
+
     private void showDialog(Food item) {
         if (mShareDialog == null) {
             initShareDialog(item);
@@ -76,30 +84,33 @@ public class FoodAdapter extends SimpleDataBindingAdapter<Food, FoodCardItemBind
         TextView foodName = view.findViewById(R.id.foodName);
         foodName.setText(item.getFoodName());
         TextView sc = view.findViewById(R.id.sc);
-        setTextDrawable(sc,item.getIsThumbsUp());
-        sc.setOnClickListener(v -> {
-            if(TextUtils.equals(item.getIsThumbsUp(),THUMBS)){
-                setTextDrawable(sc,NO_THUMBS);
-                item.setIsThumbsUp(NO_THUMBS);
-            }else{
-                setTextDrawable(sc,THUMBS);
-                item.setIsThumbsUp(THUMBS);
+        setTextDrawable(sc, item.getIsThumbsUp());
+        ClickUtils.setClick(sc, 2, new ClickUtils.onClickListener() {
+            @Override
+            public void onClick() {
+                if (TextUtils.equals(item.getIsThumbsUp(), THUMBS)) {
+                    setTextDrawable(sc, NO_THUMBS);
+                    item.setIsThumbsUp(NO_THUMBS);
+                } else {
+                    setTextDrawable(sc, THUMBS);
+                    item.setIsThumbsUp(THUMBS);
+                }
+                FoodDao.getInstance().updateFoodThumb(item);
             }
-            FoodDao.getInstance().updateFoodThumb(item);
         });
         window.setContentView(view);
         window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);//设置横向全屏
     }
 
-    private void setTextDrawable(TextView sc,String isThumb){
-        if(TextUtils.equals(isThumb,THUMBS)){
-            Drawable drawable =mContext.getResources().getDrawable(R.drawable.sc_fill);
+    private void setTextDrawable(TextView sc, String isThumb) {
+        if (TextUtils.equals(isThumb, THUMBS)) {
+            Drawable drawable = mContext.getResources().getDrawable(R.drawable.sc_fill);
             drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
-            sc.setCompoundDrawables(null,drawable,null,null);
-        }else{
-            Drawable drawable =mContext.getResources().getDrawable(R.drawable.sc);
+            sc.setCompoundDrawables(null, drawable, null, null);
+        } else {
+            Drawable drawable = mContext.getResources().getDrawable(R.drawable.sc);
             drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
-            sc.setCompoundDrawables(null,drawable,null,null);
+            sc.setCompoundDrawables(null, drawable, null, null);
         }
     }
 
