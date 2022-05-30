@@ -1,37 +1,32 @@
 package com.winter.nav_eatwhat.ui.edit;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
-import android.widget.CompoundButton;
+import android.view.Window;
+import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 
 import androidx.annotation.Nullable;
-import androidx.lifecycle.Observer;
-import androidx.recyclerview.widget.DiffUtil;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.kunminx.architecture.ui.page.DataBindingConfig;
-import com.winter.lib_common.response.DataResult;
 import com.winter.lib_common.ui.page.BaseFragment;
-import com.winter.lib_common.utils.ToastUtils;
 import com.winter.nav_eatwhat.BR;
 import com.winter.nav_eatwhat.R;
-import com.winter.nav_eatwhat.data.bean.Food;
-import com.winter.nav_eatwhat.data.dao.FoodDao;
-import com.winter.nav_eatwhat.ui.adapter.DiffUtils;
-import com.winter.nav_eatwhat.ui.adapter.FoodDiffAdapter;
+import com.winter.nav_eatwhat.ui.MainActivity;
+import com.winter.nav_eatwhat.ui.adapter.FoodAdapter;
+import com.winter.nav_eatwhat.ui.page.AddFoodActivity;
 import com.winter.nav_eatwhat.ui.state.MainActivityViewModel;
-
-import java.util.ArrayList;
 
 
 public class EditFragment extends BaseFragment {
 
     EditViewModel mState;
     MainActivityViewModel mActivityScopeState;
-    FoodDiffAdapter foodAdapter;
+
     @Override
     protected void initViewModel() {
         mState = getFragmentScopeViewModel(EditViewModel.class);
@@ -40,44 +35,28 @@ public class EditFragment extends BaseFragment {
 
     @Override
     protected DataBindingConfig getDataBindingConfig() {
-        foodAdapter = new FoodDiffAdapter(getContext(),new ArrayList<Food>(),mState);
-
+        FoodAdapter foodAdapter = new FoodAdapter(getContext());
         return new DataBindingConfig(R.layout.fragment_edit, BR.vm, mState)
-                .addBindingParam(BR.adapter, foodAdapter)
-                .addBindingParam(BR.check,new CheckBoxListener());
+                .addBindingParam(BR.adapter, foodAdapter);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        RecyclerView recyclerView = view.findViewById(R.id.rv);
-        recyclerView.setAdapter(foodAdapter);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setItemAnimator(null);
         mState.foodListRequest.getFoodLiveData().observe(this, listDataResult -> {
             if (!listDataResult.getResponseStatus().isSuccess()) return;
             if (listDataResult.getResult() != null) {
-                foodAdapter.setNewData(listDataResult.getResult());
+                mState.list.setValue(listDataResult.getResult());
             }
         });
         mState.foodListRequest.getFoodChangeLiveData().observe(this, foodDataResult -> {
             if (!foodDataResult.getResponseStatus().isSuccess()) return;
             if (foodDataResult.getResult() != null) {
-                Log.d("test",foodDataResult.getResult().toString());
+                Log.d("test", foodDataResult.getResult().toString());
             }
         });
         if (mState.foodListRequest.getFoodLiveData().getValue() == null) {
             mState.foodListRequest.requestFoodListInfo();
-        }
-    }
-
-    public class CheckBoxListener implements CompoundButton.OnCheckedChangeListener{
-        @Override
-        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//            mState.list.setValue(FoodDao.getInstance().getThumbFoods(isChecked));
-            DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(DiffUtils.getInstance().getFoodDiffCallback(foodAdapter.getData(), FoodDao.getInstance().getThumbFoods(isChecked)));
-            diffResult.dispatchUpdatesTo(foodAdapter);
-            foodAdapter.setData(FoodDao.getInstance().getThumbFoods(isChecked));
         }
     }
 }

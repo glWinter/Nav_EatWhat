@@ -16,7 +16,7 @@ public class DiffUtils {
 
 
     private DiffUtil.Callback mFoodDiffCallback;
-
+    private DiffUtil.ItemCallback<Food> mFoodItemCallback;
     private DiffUtils() {
     }
 
@@ -24,6 +24,22 @@ public class DiffUtils {
 
     public static DiffUtils getInstance() {
         return S_DIFF_UTILS;
+    }
+    public DiffUtil.ItemCallback<Food> getFoodItemCallback(){
+        if(mFoodItemCallback == null){
+            mFoodItemCallback = new DiffUtil.ItemCallback<Food>() {
+                @Override
+                public boolean areItemsTheSame(@NonNull Food oldItem, @NonNull Food newItem) {
+                    return oldItem.equals(newItem);
+                }
+
+                @Override
+                public boolean areContentsTheSame(@NonNull Food oldItem, @NonNull Food newItem) {
+                    return oldItem.getFoodName().equals(newItem.getFoodName());
+                }
+            };
+        }
+        return mFoodItemCallback;
     }
 
     public DiffUtil.Callback getFoodDiffCallback(List<Food> oldList,List<Food> newList){

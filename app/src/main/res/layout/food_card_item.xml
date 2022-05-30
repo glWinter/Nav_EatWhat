@@ -4,79 +4,65 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <variable
+            name="food"
+            type="com.winter.nav_eatwhat.data.bean.Food" />
 
     </data>
 
-    <androidx.cardview.widget.CardView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_margin="5dp"
-        app:cardCornerRadius="10dp"
-        android:background="@drawable/food_item_selector"
-        android:layout_height="110dp">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:gravity="center_vertical"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:layout_height="wrap_content">
-            <com.android.liuzhuang.rcimageview.RoundCornerImageView
-                android:id="@+id/pic"
+        android:layout_height="240dp">
 
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                tools:src="@mipmap/ic_launcher"
-                android:scaleType="centerCrop"
-                app:rciv_radius="10dp"
-                android:layout_margin="10dp" />
+        <com.android.liuzhuang.rcimageview.RoundCornerImageView
+            android:id="@+id/pic"
+            imgUrl="@{food.foodImgUrl}"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:scaleType="centerCrop"
+            app:rciv_radius="10dp"
+            tools:src="@mipmap/ic_launcher" />
+        <TextView
+            android:id="@+id/foodName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="test"
+            android:text="@{food.foodName}"
+            android:layout_below="@id/pic"
+            android:textSize="22sp"
+            android:layout_marginStart="5dp"
+            android:textStyle="bold"
+            android:textColor="@color/login_button_bg_color"
+            />
+           <RelativeLayout
+               android:id="@+id/rl_name"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_below="@id/foodName"
+               android:gravity="center_vertical"
+               android:padding="5dp"
+               android:orientation="horizontal">
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="4dp"
-                android:layout_toRightOf="@id/pic">
+               <TextView
+                   android:id="@+id/desc"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textColor="@color/text_login_color"
+                   android:textSize="16sp"
+                   android:textStyle="bold"
+                   android:text="@{food.foodDesc}"
+                   tools:text="test" />
 
-                <TextView
-                    android:id="@+id/foodName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    tools:text="name" />
+               <ImageView
+                   android:id="@+id/menu"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_alignParentEnd="true"
+                   android:layout_centerVertical="true"
+                   android:src="@drawable/menu" />
+           </RelativeLayout>
 
-                <ImageView
-                    android:id="@+id/thump"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="8dp"
-                    tools:src="@drawable/thumb" />
 
-                <TextView
-                    android:id="@+id/foodDesc"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/foodName"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="4dp"
-                    android:textColor="@color/light_grey"
-                    android:textSize="12sp"
-                    tools:text="desc" />
-
-                <TextView
-                    android:id="@+id/foodUseTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/foodDesc"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="4dp"
-                    android:textColor="@color/light_grey"
-                    android:textSize="10sp"
-                    tools:text="desc" />
-            </RelativeLayout>
         </RelativeLayout>
-
-    </androidx.cardview.widget.CardView>
 </layout>

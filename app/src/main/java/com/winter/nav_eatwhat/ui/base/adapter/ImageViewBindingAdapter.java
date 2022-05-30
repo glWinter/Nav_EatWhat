@@ -7,12 +7,21 @@ import androidx.databinding.BindingAdapter;
 
 import com.android.liuzhuang.rcimageview.RoundCornerImageView;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.winter.nav_eatwhat.R;
 
 public class ImageViewBindingAdapter {
     @BindingAdapter(value = {"imgUrl"}, requireAll = false)
     public static void openDrawer(RoundCornerImageView imageView, String imgUrl) {
-        Glide.with(imageView.getContext()).load(imgUrl).into(imageView);
+        RequestOptions options = new RequestOptions()
+                .placeholder(R.drawable.glide_def)//图片加载出来前，显示的图片
+                .fallback( R.drawable.glide_def) //url为空的时候,显示的图片
+                .error(R.drawable.glide_def);//图片加载失败后，显示的图片
+
+        Glide.with(imageView.getContext())
+                .load(imgUrl)
+                .apply(options)
+                .into(imageView);
     }
 
     @BindingAdapter(value = {"thumbSrc"}, requireAll = false)

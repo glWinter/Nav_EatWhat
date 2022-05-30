@@ -63,5 +63,5 @@ dependencies {
     debugImplementation 'com.guolindev.glance:glance:1.1.0'
 
     implementation 'org.litepal.guolindev:core:3.2.3'
-
+    implementation "com.kunminx.arch:binding-recyclerview:3.9.0-beta1"
 }

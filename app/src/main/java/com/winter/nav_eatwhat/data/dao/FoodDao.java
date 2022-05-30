@@ -37,4 +37,7 @@ public class FoodDao {
         f.save();
     }
 
+    public List<Food> getFoodListAsPage(int page){
+        return LitePal.limit(20).offset(page).find(Food.class);
+    }
 }
