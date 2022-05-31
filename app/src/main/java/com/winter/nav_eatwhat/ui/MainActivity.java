@@ -7,8 +7,6 @@ import android.view.View;
 
 
 import androidx.annotation.Nullable;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.lifecycle.Observer;
 import androidx.navigation.NavController;
 
 import androidx.navigation.Navigation;
@@ -20,7 +18,6 @@ import com.kunminx.architecture.ui.page.DataBindingConfig;
 import com.winter.lib_common.ui.page.BaseActivity;
 import com.winter.nav_eatwhat.BR;
 import com.winter.nav_eatwhat.R;
-import com.winter.nav_eatwhat.domain.message.DrawerCoordinateManager;
 import com.winter.nav_eatwhat.domain.message.SharedViewModel;
 
 import com.winter.nav_eatwhat.ui.page.AddFoodActivity;

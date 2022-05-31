@@ -3,14 +3,11 @@ package com.winter.nav_eatwhat.ui.edit;
 import android.view.View;
 
 import androidx.databinding.ObservableField;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.winter.nav_eatwhat.data.bean.Food;
-import com.winter.nav_eatwhat.data.bean.LibraryInfo;
 import com.winter.nav_eatwhat.domain.request.FoodListRequest;
-import com.winter.nav_eatwhat.domain.request.InfoRequest;
 
 import java.util.List;
 
