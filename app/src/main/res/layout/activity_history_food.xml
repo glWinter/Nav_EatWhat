@@ -5,23 +5,25 @@
     <data>
         <variable
             name="vm"
-            type="com.winter.nav_eatwhat.ui.state.ScViewModel" />
+            type="com.winter.nav_eatwhat.ui.state.HistoryViewModel" />
+
         <variable
             name="adapter"
             type="androidx.recyclerview.widget.RecyclerView.Adapter" />
     </data>
 
+
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:background="@color/white"
         android:layout_height="match_parent">
 
         <com.hjq.bar.TitleBar
             android:id="@+id/titleBar"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            app:leftIcon="@null"
-            app:title="收藏" />
+            app:title="历史记录" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv"
@@ -29,7 +31,7 @@
             submitList="@{vm.list}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layoutManager="com.kunminx.binding_recyclerview.layout_manager.WrapContentGridLayoutManager"
-            app:spanCount="2" />
+            app:layoutManager="com.kunminx.binding_recyclerview.layout_manager.WrapContentLinearLayoutManager"
+            />
     </LinearLayout>
 </layout>
