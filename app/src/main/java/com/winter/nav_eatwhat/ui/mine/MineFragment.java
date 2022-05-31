@@ -46,6 +46,7 @@ public class MineFragment extends BaseFragment {
     public class ClickProxy{
         public void gotoSc() {
             mEvent.requestHideBottomView(true);
+            mEvent.requestHideFab(true);
             nav().navigate(R.id.action_mineFragment_to_scFragment);
         }
     }

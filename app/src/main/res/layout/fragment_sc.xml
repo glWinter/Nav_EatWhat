@@ -6,9 +6,13 @@
         <variable
             name="vm"
             type="com.winter.nav_eatwhat.ui.state.ScViewModel" />
+        <variable
+            name="adapter"
+            type="androidx.recyclerview.widget.RecyclerView.Adapter" />
     </data>
 
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -18,5 +22,14 @@
             android:layout_height="48dp"
             app:leftIcon="@null"
             app:title="收藏" />
-    </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            submitList="@{vm.list}"
+            adapter="@{adapter}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="com.kunminx.binding_recyclerview.layout_manager.WrapContentGridLayoutManager"
+            app:spanCount="2"
+            android:id="@+id/rv"/>
+    </LinearLayout>
 </layout>

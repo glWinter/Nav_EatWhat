@@ -7,6 +7,7 @@ import android.view.View;
 
 
 import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
 import androidx.navigation.NavController;
 
 import androidx.navigation.Navigation;
@@ -14,6 +15,7 @@ import androidx.navigation.ui.NavigationUI;
 
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.kunminx.architecture.ui.page.DataBindingConfig;
 import com.winter.lib_common.ui.page.BaseActivity;
 import com.winter.nav_eatwhat.BR;
@@ -47,12 +49,11 @@ public class MainActivity extends BaseActivity {
     }
     private void init() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.nav_view);
+        FloatingActionButton fab = findViewById(R.id.fab);
         NavController navController = Navigation.findNavController(this, R.id.main_fragment_host);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
-        mEvent.isHideBottomView().observe(this, aBoolean -> {
-
-            bottomNavigationView.setVisibility(aBoolean?View.GONE:View.VISIBLE);
-        });
+        mEvent.isHideBottomView().observe(this, aBoolean -> bottomNavigationView.setVisibility(aBoolean?View.GONE:View.VISIBLE));
+        mEvent.isHideAddFab().observe(this, aBoolean -> fab.setVisibility(aBoolean?View.GONE:View.VISIBLE));
     }
 
     public static void start(Context context){
