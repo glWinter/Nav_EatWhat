@@ -8,6 +8,7 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.Observer;
 import androidx.navigation.NavController;
 
 import androidx.navigation.Navigation;
@@ -51,6 +52,10 @@ public class MainActivity extends BaseActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.nav_view);
         NavController navController = Navigation.findNavController(this, R.id.main_fragment_host);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
+        mEvent.isHideBottomView().observe(this, aBoolean -> {
+
+            bottomNavigationView.setVisibility(aBoolean?View.GONE:View.VISIBLE);
+        });
     }
 
     public static void start(Context context){

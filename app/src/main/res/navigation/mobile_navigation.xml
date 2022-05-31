@@ -21,5 +21,15 @@
         android:id="@+id/navigation_mine"
         android:name="com.winter.nav_eatwhat.ui.mine.MineFragment"
         android:label="@string/title_mine"
-        tools:layout="@layout/fragment_mine" />
+        tools:layout="@layout/fragment_mine">
+        <action
+            android:id="@+id/action_mineFragment_to_scFragment"
+            app:destination="@id/ScFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ScFragment"
+        android:name="com.winter.nav_eatwhat.ui.page.ScFragment"
+        android:label="ScFragment"
+        tools:layout="@layout/fragment_sc" />
 </navigation>
