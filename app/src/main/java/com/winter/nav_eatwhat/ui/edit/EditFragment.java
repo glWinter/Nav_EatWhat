@@ -16,10 +16,14 @@ import com.kunminx.architecture.ui.page.DataBindingConfig;
 import com.winter.lib_common.ui.page.BaseFragment;
 import com.winter.nav_eatwhat.BR;
 import com.winter.nav_eatwhat.R;
+import com.winter.nav_eatwhat.data.bean.Food;
+import com.winter.nav_eatwhat.data.dao.FoodDao;
 import com.winter.nav_eatwhat.ui.MainActivity;
 import com.winter.nav_eatwhat.ui.adapter.FoodAdapter;
 import com.winter.nav_eatwhat.ui.page.AddFoodActivity;
 import com.winter.nav_eatwhat.ui.state.MainActivityViewModel;
+
+import java.util.List;
 
 
 public class EditFragment extends BaseFragment {
@@ -35,7 +39,7 @@ public class EditFragment extends BaseFragment {
 
     @Override
     protected DataBindingConfig getDataBindingConfig() {
-        FoodAdapter foodAdapter = new FoodAdapter(getContext());
+        FoodAdapter foodAdapter = new FoodAdapter(getContext(),mState);
         return new DataBindingConfig(R.layout.fragment_edit, BR.vm, mState)
                 .addBindingParam(BR.adapter, foodAdapter);
     }
@@ -55,8 +59,11 @@ public class EditFragment extends BaseFragment {
                 Log.d("test", foodDataResult.getResult().toString());
             }
         });
-        if (mState.foodListRequest.getFoodLiveData().getValue() == null) {
+        List<Food> thumbFoods = FoodDao.getInstance().getThumbFoods(false);
+        if (thumbFoods.size()==0&&mState.foodListRequest.getFoodLiveData().getValue() == null) {
             mState.foodListRequest.requestFoodListInfo();
+        }else{
+            mState.list.setValue(thumbFoods);
         }
     }
 }

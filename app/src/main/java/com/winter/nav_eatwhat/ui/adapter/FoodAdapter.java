@@ -33,25 +33,15 @@ import kotlin.Unit;
 public class FoodAdapter extends SimpleDataBindingAdapter<Food, FoodCardItemBinding> {
     private static final String THUMBS = "1";
     private static final String NO_THUMBS = "0";
+    private EditViewModel editViewModel;
 
     public FoodAdapter(Context context) {
         super(context, R.layout.food_card_item, DiffUtils.getInstance().getFoodItemCallback());
     }
-
-    @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        super.onBindViewHolder(holder, position);
-
+    public FoodAdapter(Context context,EditViewModel editViewModel) {
+        super(context, R.layout.food_card_item, DiffUtils.getInstance().getFoodItemCallback());
+        this.editViewModel = editViewModel;
     }
-
-    @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position, @NonNull List<Object> payloads) {
-        super.onBindViewHolder(holder, position, payloads);
-        if (payloads.isEmpty()) {
-            onBindViewHolder(holder, position);
-        }
-    }
-
     @Override
     protected void onBindItem(FoodCardItemBinding binding, Food item, RecyclerView.ViewHolder holder) {
         binding.setFood(item);
@@ -85,9 +75,15 @@ public class FoodAdapter extends SimpleDataBindingAdapter<Food, FoodCardItemBind
                 if (TextUtils.equals(item.getIsThumbsUp(), THUMBS)) {
                     setTextDrawable(sc, NO_THUMBS);
                     item.setIsThumbsUp(NO_THUMBS);
+                    if(editViewModel!=null){
+                        editViewModel.foodListRequest.requestFoodThumb(String.valueOf(item.getFoodId()),NO_THUMBS);
+                    }
                 } else {
                     setTextDrawable(sc, THUMBS);
                     item.setIsThumbsUp(THUMBS);
+                    if(editViewModel!=null){
+                        editViewModel.foodListRequest.requestFoodThumb(String.valueOf(item.getFoodId()),THUMBS);
+                    }
                 }
                 FoodDao.getInstance().updateFoodThumb(item);
             }
