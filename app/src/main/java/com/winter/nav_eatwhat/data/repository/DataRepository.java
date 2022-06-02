@@ -106,58 +106,7 @@ public class DataRepository {
         });
     }
 
-    public void getFreeMusic(DataResult.Result<TestAlbum> result) {
-        Gson gson = new Gson();
-        Type type = new TypeToken<TestAlbum>() {
-        }.getType();
-        TestAlbum testAlbum = gson.fromJson(Utils.getApp().getString(R.string.free_music_json), type);
 
-        result.onResult(new DataResult<>(testAlbum, new ResponseStatus()));
-    }
-
-    public void getLibraryInfo(DataResult.Result<List<LibraryInfo>> result) {
-        Gson gson = new Gson();
-        Type type = new TypeToken<List<LibraryInfo>>() {
-        }.getType();
-        List<LibraryInfo> list = gson.fromJson(Utils.getApp().getString(R.string.library_json), type);
-
-        result.onResult(new DataResult<>(list, new ResponseStatus()));
-    }
-
-    /**
-     * TODO：模拟下载任务:
-     * 可分别用于 普通的请求，和可跟随页面生命周期叫停的请求，
-     * 具体可见 ViewModel 和 UseCase 中的使用。
-     *
-     * @param result 从 Request-ViewModel 或 UseCase 注入 LiveData，用于 控制流程、回传进度、回传文件
-     */
-    public void downloadFile(DownloadFile downloadFile, DataResult.Result<DownloadFile> result) {
-
-        Timer timer = new Timer();
-
-        TimerTask task = new TimerTask() {
-            @Override
-            public void run() {
-
-                //模拟下载，假设下载一个文件要 10秒、每 100 毫秒下载 1% 并通知 UI 层
-                if (downloadFile.getProgress() < 100) {
-                    downloadFile.setProgress(downloadFile.getProgress() + 1);
-                    Log.d("TAG", "下载进度 " + downloadFile.getProgress() + "%");
-                } else {
-                    timer.cancel();
-                }
-                if (downloadFile.isForgive()) {
-                    timer.cancel();
-                    downloadFile.setProgress(0);
-                    downloadFile.setForgive(false);
-                    return;
-                }
-                result.onResult(new DataResult<>(downloadFile, new ResponseStatus()));
-            }
-        };
-
-        timer.schedule(task, 100, 100);
-    }
 
     //TODO tip：模拟可取消的登录请求：
     //

@@ -19,15 +19,8 @@ import com.winter.nav_eatwhat.R;
 import com.winter.nav_eatwhat.data.bean.Food;
 import com.winter.nav_eatwhat.data.dao.FoodDao;
 import com.winter.nav_eatwhat.databinding.FoodCardItemBinding;
-import com.winter.nav_eatwhat.ui.edit.EditFragment;
 import com.winter.nav_eatwhat.ui.edit.EditViewModel;
 
-
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import io.reactivex.rxjava3.functions.Consumer;
-import kotlin.Unit;
 
 
 public class FoodAdapter extends SimpleDataBindingAdapter<Food, FoodCardItemBinding> {
@@ -104,5 +97,4 @@ public class FoodAdapter extends SimpleDataBindingAdapter<Food, FoodCardItemBind
             sc.setCompoundDrawables(null, drawable, null, null);
         }
     }
-
 }

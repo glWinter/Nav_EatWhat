@@ -49,6 +49,10 @@ public class MineFragment extends BaseFragment {
             mEvent.requestHideFab(true);
             nav().navigate(R.id.action_mineFragment_to_scFragment);
         }
+
+        public void gotoSetting(){
+
+        }
     }
 
 }
