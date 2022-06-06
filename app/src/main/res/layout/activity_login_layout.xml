@@ -15,43 +15,65 @@
             type="com.winter.nav_eatwhat.ui.page.LoginActivity.PhoneTextWatcher" />
     </data>
 
-    <RelativeLayout
+    <LinearLayout
         android:background="@color/white"
         android:layout_width="match_parent"
+        android:orientation="vertical"
         android:layout_height="match_parent">
-
-        <EditText
-            watcher="@{watcher}"
-            android:id="@+id/phone_num"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:gravity="center"
-            android:paddingTop="10dp"
-            android:textCursorDrawable="@drawable/shape_edittext_cursor"
-            android:inputType="phone"
-            android:maxLines="1"
-            android:paddingBottom="10dp"
-            android:hint="输入手机号！"
-            android:background="@drawable/login_phone_shape" />
-
-        <Button
-            enabled="@{vm.buttonEnable}"
-            onClickWithDebouncing="@{()->click.login()}"
+            android:layout_height="0dp"
+            android:layout_weight="7"/>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/phone_num"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="22dp"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/login_button_selector"
-            android:gravity="center"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:text="登   录"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
-    </RelativeLayout>
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:orientation="vertical">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/phoneInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    watcher="@{watcher}"
+                    android:id="@+id/phone_num"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textCursorDrawable="@drawable/shape_edittext_cursor"
+                    android:hint="手机号"
+                    android:gravity="center"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:imeOptions="actionGo"
+                    android:inputType="number"
+                    android:maxLength="20"
+                    android:background="@drawable/login_phone_shape"
+                    android:maxLines="1"
+                    android:textColor="@color/login_button_bg_color_able" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                enabled="@{vm.buttonEnable}"
+                onClickWithDebouncing="@{()->click.login()}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/phone_num"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="22dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/login_button_selector"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="登   录"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+    </LinearLayout>
 </layout>

@@ -8,6 +8,7 @@
 
     <list>
         <mapping class="com.winter.nav_eatwhat.data.bean.Food" />
+        <mapping class="com.winter.nav_eatwhat.data.bean.FoodSelectHistory"/>
     </list>
 
 </litepal>

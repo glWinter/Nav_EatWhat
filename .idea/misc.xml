@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/drawable-v21/crop__selectable_background.xml" value="0.1645" />
+        <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.24" />
         <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/drawable/bottom_shape.xml" value="0.1595" />
         <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/drawable/button_shape.xml" value="0.1645" />
         <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/drawable/crop__texture.xml" value="0.1645" />
@@ -11,6 +12,7 @@
         <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/drawable/food_item_selector.xml" value="0.1705" />
         <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.1645" />
         <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.1645" />
+        <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/drawable/ic_like.xml" value="0.24" />
         <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/drawable/login_bg_gradient.xml" value="0.1645" />
         <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/drawable/login_button_selector.xml" value="0.158" />
         <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/drawable/login_button_shape.xml" value="0.158" />
@@ -32,7 +34,7 @@
         <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/layout/activity_add_food.xml" value="0.2441214194100043" />
         <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/layout/activity_history_food.xml" value="0.33" />
         <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/layout/activity_login.xml" value="0.1" />
-        <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/layout/activity_login_layout.xml" value="0.1" />
+        <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/layout/activity_login_layout.xml" value="0.22" />
         <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/layout/activity_main.xml" value="0.28020833333333334" />
         <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/layout/activity_splash_layout.xml" value="0.2441214194100043" />
         <entry key="..\:/code/OwnerProject/Nav_EatWhat/app/src/main/res/layout/adapter_library.xml" value="0.2441214194100043" />
