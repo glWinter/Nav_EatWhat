@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
 import com.kunminx.architecture.ui.page.DataBindingConfig;
+import com.tencent.bugly.crashreport.CrashReport;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 import com.winter.lib_common.ui.page.BaseActivity;

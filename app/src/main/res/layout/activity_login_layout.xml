@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -34,8 +35,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginRight="20dp"
+                app:hintEnabled="false"
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -53,7 +55,8 @@
                     android:maxLength="20"
                     android:background="@drawable/login_phone_shape"
                     android:maxLines="1"
-                    android:textColor="@color/login_button_bg_color_able" />
+                    android:textColor="@color/login_button_bg_color_able"
+                   />
 
             </com.google.android.material.textfield.TextInputLayout>
 

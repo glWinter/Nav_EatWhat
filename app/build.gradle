@@ -11,7 +11,6 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -65,4 +64,6 @@ dependencies {
     implementation 'org.litepal.guolindev:core:3.2.3'
     implementation "com.kunminx.arch:binding-recyclerview:3.9.0-beta1"
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
+
+    implementation 'com.tencent.bugly:crashreport:latest.release'
 }
