@@ -2,6 +2,7 @@ package com.winter.nav_eatwhat.ui.page;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 
@@ -33,12 +34,14 @@ public class SplashActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         setTheme(R.style.Theme_Nav_EatWhat);
         super.onCreate(savedInstanceState);
+        ImageView imageView = findViewById(R.id.sp_bg);
         ThreadUtils.runOnUiThreadDelayed(new Runnable() {
             @Override
             public void run() {
                 String account = MMKV.defaultMMKV().decodeString("account","");
                 if(account == null || TextUtils.isEmpty(account)){
-                    LoginActivity.start(SplashActivity.this);
+//                    LoginActivity.start(SplashActivity.this);
+                    LoginActivity.actionStartWithTransition(SplashActivity.this,imageView);
                 }else{
                     MainActivity.start(SplashActivity.this);
                 }

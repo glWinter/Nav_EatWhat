@@ -24,8 +24,16 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="7"/>
+            android:layout_weight="7">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:src="@drawable/splash_img"
+                android:transitionName="@string/transition_logo_splash" />
+        </RelativeLayout>
         <LinearLayout
+            android:id="@+id/loginLayoutBottom"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="3"
